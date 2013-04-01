@@ -135,7 +135,7 @@ class SCPClient(object):
         return (mode, size, mtime, atime)
     
     def _send_single_files(self,files):
-        if isinstance(files,str):files=[files]
+        if isinstance(files,basestring):files=[files]
         for name in files:
            basename = os.path.basename(name)
            (mode, size, mtime, atime) = self._read_stats(name)
@@ -172,7 +172,7 @@ class SCPClient(object):
         # for loop for recursive transfers
         # will only return one dir if recursive = False
         #handle multiple paths
-        if isinstance(files,str):files=[files]
+        if isinstance(files,basestring):files=[files]
         for base in files:
             if os.path.isfile(base):
                 #is file
@@ -201,8 +201,8 @@ class SCPClient(object):
               
     def _list_dir(self,paths,filters=[],recursive=False):
         ffiles=[]
-        if isinstance(filters,str):filters=[filters]  
-        if isinstance(paths,str):paths=[paths]    
+        if isinstance(filters,basestring):filters=[filters]  
+        if isinstance(paths,basestring):paths=[paths]    
         
         for root in paths:
             for root,dirs,files in os.walk(root,topdown=True):
